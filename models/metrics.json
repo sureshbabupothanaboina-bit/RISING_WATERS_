@@ -1,0 +1,177 @@
+{
+  "Decision Tree": {
+    "accuracy": 92.59,
+    "precision": 94.77,
+    "recall": 96.18,
+    "f1_score": 95.47,
+    "roc_auc": 0.8631,
+    "confusion_matrix": [
+      [
+        84,
+        25
+      ],
+      [
+        18,
+        453
+      ]
+    ],
+    "feature_importance": [
+      {
+        "feature": "Elevation_m",
+        "importance": 0.4422
+      },
+      {
+        "feature": "Cloud_Visibility_Pct",
+        "importance": 0.3306
+      },
+      {
+        "feature": "Jun_Sep",
+        "importance": 0.1642
+      },
+      {
+        "feature": "Mar_May",
+        "importance": 0.0227
+      },
+      {
+        "feature": "Jan_Feb",
+        "importance": 0.02
+      },
+      {
+        "feature": "ANNUAL",
+        "importance": 0.0103
+      },
+      {
+        "feature": "Max_Temp_C",
+        "importance": 0.0053
+      },
+      {
+        "feature": "Oct_Dec",
+        "importance": 0.0048
+      }
+    ],
+    "filename": "decision_tree.joblib"
+  },
+  "Random Forest": {
+    "accuracy": 93.97,
+    "precision": 94.49,
+    "recall": 98.3,
+    "f1_score": 96.36,
+    "roc_auc": 0.923,
+    "confusion_matrix": [
+      [
+        82,
+        27
+      ],
+      [
+        8,
+        463
+      ]
+    ],
+    "feature_importance": [
+      {
+        "feature": "Elevation_m",
+        "importance": 0.5189
+      },
+      {
+        "feature": "Cloud_Visibility_Pct",
+        "importance": 0.1097
+      },
+      {
+        "feature": "Jun_Sep",
+        "importance": 0.1075
+      },
+      {
+        "feature": "ANNUAL",
+        "importance": 0.1001
+      },
+      {
+        "feature": "Mar_May",
+        "importance": 0.0527
+      },
+      {
+        "feature": "Oct_Dec",
+        "importance": 0.043
+      },
+      {
+        "feature": "Jan_Feb",
+        "importance": 0.0368
+      },
+      {
+        "feature": "Max_Temp_C",
+        "importance": 0.0312
+      }
+    ],
+    "filename": "random_forest.joblib"
+  },
+  "K-Nearest Neighbours (KNN)": {
+    "accuracy": 92.93,
+    "precision": 94.06,
+    "recall": 97.45,
+    "f1_score": 95.72,
+    "roc_auc": 0.9164,
+    "confusion_matrix": [
+      [
+        80,
+        29
+      ],
+      [
+        12,
+        459
+      ]
+    ],
+    "feature_importance": [],
+    "filename": "k-nearest_neighbours_knn.joblib"
+  },
+  "XGBoost": {
+    "accuracy": 96.55,
+    "precision": 94.82,
+    "recall": 97.24,
+    "f1_score": 96.02,
+    "roc_auc": 0.919,
+    "confusion_matrix": [
+      [
+        84,
+        25
+      ],
+      [
+        13,
+        458
+      ]
+    ],
+    "feature_importance": [
+      {
+        "feature": "Elevation_m",
+        "importance": 0.43689998984336853
+      },
+      {
+        "feature": "Jun_Sep",
+        "importance": 0.19939999282360077
+      },
+      {
+        "feature": "Cloud_Visibility_Pct",
+        "importance": 0.1762000024318695
+      },
+      {
+        "feature": "ANNUAL",
+        "importance": 0.08219999819993973
+      },
+      {
+        "feature": "Oct_Dec",
+        "importance": 0.027400000020861626
+      },
+      {
+        "feature": "Mar_May",
+        "importance": 0.026599999517202377
+      },
+      {
+        "feature": "Max_Temp_C",
+        "importance": 0.026499999687075615
+      },
+      {
+        "feature": "Jan_Feb",
+        "importance": 0.024800000712275505
+      }
+    ],
+    "filename": "xgboost.joblib"
+  }
+}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Scenario 2: Disaster Response & Resource Allocation | Hydro-Shield AI{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-title">Scenario 2: Disaster Response & Resource Allocation</div>
+    <div class="hero-subtitle">
+        Monitor multiple vulnerable flood-prone regions simultaneously during the monsoon season. Real-time machine learning predictions automatically compute and prioritize emergency relief assets (Rescue Boats, Medical Kits, Sandbags, Personnel, Buses).
+    </div>
+</section>
+
+<!-- Regional Grid & Resource Matrix -->
+<div class="glass-card" style="margin-bottom: 24px;">
+    <div class="card-header-title">
+        <span>🗺️ Regional Monsoon Monitoring & Prioritized Dispatch Matrix</span>
+        <div style="display: flex; gap: 10px;">
+            <a href="/api/export-csv" class="preset-btn" style="background: var(--accent-emerald); color: #fff; text-decoration: none; display: flex; align-items: center; gap: 6px;">
+                📥 Export Resource Allocation CSV Report
+            </a>
+            <button class="preset-btn" onclick="runBatchAnalysis()" style="background: var(--accent-blue); color: #fff;">
+                🔄 Refresh Batch Region Inference
+            </button>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="data-table" id="responseTable">
+            <thead>
+                <tr>
+                    <th>Priority Rank</th>
+                    <th>Region / District</th>
+                    <th>ML Risk Score</th>
+                    <th>Priority Status</th>
+                    <th>Rescue Boats</th>
+                    <th>Medical Kits</th>
+                    <th>Sandbags</th>
+                    <th>Personnel</th>
+                    <th>Evacuation Buses</th>
+                </tr>
+            </thead>
+            <tbody id="responseTableBody">
+                <!-- Dynamically populated via JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Regional Threat Cards Summary -->
+<div class="grid-3" id="resourceSummaryCards">
+    <!-- Populated via JS -->
+</div>
+{% endblock %}

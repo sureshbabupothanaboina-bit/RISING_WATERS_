@@ -1,0 +1,8 @@
+applications:
+- name: flood-prediction-system
+  memory: 512M
+  instances: 1
+  command: python app.py
+  buildpack: python_buildpack
+  env:
+    FLASK_ENV: production

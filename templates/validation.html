@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Scenario 3: Model Validation & Performance Assessment | Hydro-Shield AI{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-title">Scenario 3: Model Validation & Performance Assessment</div>
+    <div class="hero-subtitle">
+        Rigorous cross-algorithm validation benchmarking Decision Tree, Random Forest, K-Nearest Neighbours (KNN), and XGBoost on historical flood event test data.
+    </div>
+</section>
+
+<!-- Highlight Box for XGBoost 96.55% Accuracy -->
+<div class="glass-card" style="border-color: var(--accent-cyan); background: rgba(14, 165, 233, 0.08); margin-bottom: 24px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div>
+            <span class="risk-badge badge-success" style="margin-bottom: 8px;">TOP PERFORMER: XGBOOST</span>
+            <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff;">XGBoost Classifier — 96.55% Test Accuracy</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px; margin-top: 4px;">
+                Validated on historical flood event data. Confirms system operational reliability with 96.55% accuracy, optimal precision, and robust ROC AUC score for disaster response deployment.
+            </p>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 3rem; font-weight: 800; color: var(--accent-cyan);">
+            96.55%
+        </div>
+    </div>
+</div>
+
+<!-- Comparison Metrics Grid Cards -->
+<div class="grid-4" id="benchmarkCards" style="margin-bottom: 24px;">
+    <!-- Dynamically loaded via JS from /api/metrics -->
+</div>
+
+<!-- Interactive Charts & Confusion Matrices -->
+<div class="grid-2" style="margin-bottom: 24px;">
+    <div class="glass-card">
+        <div class="card-header-title">
+            <span>📈 Accuracy & F1-Score Comparative Chart</span>
+        </div>
+        <div style="height: 300px; position: relative;">
+            <canvas id="accuracyChart"></canvas>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <div class="card-header-title">
+            <span>🔥 Feature Importance Breakdown (XGBoost)</span>
+        </div>
+        <div style="height: 300px; position: relative;">
+            <canvas id="featureImportanceChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Confusion Matrix Table Breakdown -->
+<div class="glass-card">
+    <div class="card-header-title">
+        <span>📋 Detailed Model Benchmark Metrics Table</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Accuracy (%)</th>
+                    <th>Precision (%)</th>
+                    <th>Recall (%)</th>
+                    <th>F1-Score (%)</th>
+                    <th>ROC AUC</th>
+                    <th>Status / Deployment</th>
+                </tr>
+            </thead>
+            <tbody id="metricsTableBody">
+                <!-- Loaded via JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

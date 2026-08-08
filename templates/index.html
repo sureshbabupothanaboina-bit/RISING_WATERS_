@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}Scenario 1: Early Flood Warning & Evacuation Planning | Hydro-Shield AI{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-title">Scenario 1: Early Flood Warning & Evacuation Planning</div>
+    <div class="hero-subtitle">
+        Meteorological input parameters analyze seasonal rainfall, annual rainfall ratios, cloud visibility, and elevation to forecast flood threat levels hours before inundation.
+    </div>
+</section>
+
+<!-- Preset quick selector -->
+<div class="preset-pills">
+    <span style="font-size: 0.85rem; color: var(--text-muted); align-self: center; font-weight: 600;">Presets:</span>
+    <button class="preset-btn" onclick="loadPreset('kerala_severe')">🚨 Scenario 1: High Monsoon Flood Crisis</button>
+    <button class="preset-btn" onclick="loadPreset('assam_flash')">🌊 Low-Lying District Threat</button>
+    <button class="preset-btn" onclick="loadPreset('normal_season')">☀️ Safe Dry Season Conditions</button>
+</div>
+
+<div class="grid-main-side">
+    <!-- Input Form -->
+    <div class="glass-card">
+        <div class="card-header-title">
+            <span>🌦️ Meteorological Weather Readings</span>
+            <select id="modelSelect" class="form-control" style="width: auto; padding: 4px 10px; font-size: 0.85rem;">
+                <option value="XGBoost" selected>Model: XGBoost (96.55% Accuracy)</option>
+                <option value="Random Forest">Model: Random Forest</option>
+                <option value="Decision Tree">Model: Decision Tree</option>
+                <option value="K-Nearest Neighbours (KNN)">Model: KNN</option>
+            </select>
+        </div>
+
+        <form id="predictionForm" onsubmit="runPrediction(event)">
+            <div class="grid-2">
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>June - Sept Monsoon Rainfall (mm)</span>
+                        <span class="value-tag" id="val_Jun_Sep">1650 mm</span>
+                    </div>
+                    <input type="range" class="slider" id="Jun_Sep" min="100" max="3000" step="10" value="1650" oninput="updateVal('Jun_Sep', ' mm')">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Cloud Visibility (%)</span>
+                        <span class="value-tag" id="val_Cloud_Visibility_Pct">22 %</span>
+                    </div>
+                    <input type="range" class="slider" id="Cloud_Visibility_Pct" min="5" max="100" step="1" value="22" oninput="updateVal('Cloud_Visibility_Pct', ' %')">
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Jan - Feb Rainfall</span>
+                        <span class="value-tag" id="val_Jan_Feb">25 mm</span>
+                    </div>
+                    <input type="range" class="slider" id="Jan_Feb" min="0" max="200" step="5" value="25" oninput="updateVal('Jan_Feb', ' mm')">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Mar - May Rainfall</span>
+                        <span class="value-tag" id="val_Mar_May">180 mm</span>
+                    </div>
+                    <input type="range" class="slider" id="Mar_May" min="0" max="600" step="10" value="180" oninput="updateVal('Mar_May', ' mm')">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Oct - Dec Rainfall</span>
+                        <span class="value-tag" id="val_Oct_Dec">320 mm</span>
+                    </div>
+                    <input type="range" class="slider" id="Oct_Dec" min="0" max="800" step="10" value="320" oninput="updateVal('Oct_Dec', ' mm')">
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Annual Total Rainfall</span>
+                        <span class="value-tag" id="val_ANNUAL">2175 mm</span>
+                    </div>
+                    <input type="range" class="slider" id="ANNUAL" min="300" max="4500" step="25" value="2175" oninput="updateVal('ANNUAL', ' mm')">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>District Elevation</span>
+                        <span class="value-tag" id="val_Elevation_m">35 m</span>
+                    </div>
+                    <input type="range" class="slider" id="Elevation_m" min="5" max="1000" step="5" value="35" oninput="updateVal('Elevation_m', ' m')">
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label">
+                        <span>Max Temperature (°C)</span>
+                        <span class="value-tag" id="val_Max_Temp_C">27.5 °C</span>
+                    </div>
+                    <input type="range" class="slider" id="Max_Temp_C" min="15" max="45" step="0.5" value="27.5" oninput="updateVal('Max_Temp_C', ' °C')">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                <span>🌊 Run Machine Learning Flood Risk Inference</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Output Dial & Evacuation Plan -->
+    <div class="glass-card">
+        <div class="card-header-title">
+            <span>🛡️ Flood Risk Assessment Dial</span>
+            <span id="riskBadge" class="risk-badge badge-danger">High Alert</span>
+        </div>
+
+        <div class="gauge-container">
+            <div class="gauge-circle" id="gaugeCircle">
+                <div class="gauge-inner">
+                    <div class="gauge-value" id="riskPercent">88.4%</div>
+                    <div class="gauge-label">FLOOD PROBABILITY</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="advisoryContainer" class="advisory-box">
+            <div style="font-weight: 700; display: flex; justify-content: space-between; align-items: center;">
+                <span id="advisoryAction" style="font-size: 1.05rem;">Immediate Mandatory Evacuation</span>
+                <span id="timeWindow" style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono);">0 - 4 Hours</span>
+            </div>
+
+            <ul class="advisory-list" id="advisoryList">
+                <li>Issue district-wide emergency siren warning and mobile broadcasts.</li>
+                <li>Deploy amphibious rescue boats and army disaster response columns.</li>
+                <li>Open elevated relief centers in non-inundated zones.</li>
+                <li>Cut power grids in submerged low-lying areas.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Multi-Model Cross Validation Comparison for this input -->
+<div class="glass-card" style="margin-top: 24px;">
+    <div class="card-header-title">
+        <span>🤖 Multi-Algorithm Inference Comparison for Current Input</span>
+    </div>
+
+    <div class="grid-4" id="multiModelCards">
+        <!-- Dynamically rendered via JS -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flood Prediction & Early Warning System{% endblock %}</title>
+    <meta name="description" content="AI-powered Flood Risk Prediction & Early Warning System using Decision Tree, Random Forest, KNN, and XGBoost models.">
+    <!-- Fonts & Chart.js -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-wrapper">
+            <a href="/" class="brand">
+                <div class="brand-logo">🌊</div>
+                <div class="brand-text">
+                    <h1>HYDRO-SHIELD AI</h1>
+                    <span>Flood Early Warning System</span>
+                </div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="/" class="nav-item {% if page == 'early_warning' %}active{% endif %}">
+                    <span>⚡</span> Early Warning (Scenario 1)
+                </a>
+                <a href="/disaster-response" class="nav-item {% if page == 'disaster_response' %}active{% endif %}">
+                    <span>📑</span> Disaster Response (Scenario 2)
+                </a>
+                <a href="/model-validation" class="nav-item {% if page == 'model_validation' %}active{% endif %}">
+                    <span>📊</span> Model Benchmarks (Scenario 3)
+                </a>
+            </nav>
+            
+            <div class="cloud-badge">
+                <span class="status-dot"></span>
+                <span>IBM CLOUD READY</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Hydro-Shield AI Machine Learning Flood Prediction Platform &bull; Powered by XGBoost, Random Forest, Decision Tree & KNN Models &bull; Built for IBM Cloud Deployment</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+.vscode/
+.idea/
+*.log
+mingit/
+mingit.zip
+RAISING_WATER_COMPLETE_PROJECT.zip
+*.zip
